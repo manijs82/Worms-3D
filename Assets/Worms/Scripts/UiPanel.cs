@@ -10,6 +10,7 @@ namespace Worms
         private void Start()
         {
             _panel = transform.GetChild(0).gameObject;
+            _active = _panel.activeSelf;
         }
 
         protected override void Action(Massage msg)
