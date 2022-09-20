@@ -1,14 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Worms
 {
-    [System.Serializable]
+    [Serializable]
     public class Team
     {
+        public event Action OnEndTurn;
+        
         [SerializeField] private List<Player> _players;
 
         public int PlayerCount => _players.Count;
+        public Player[] Players => _players.ToArray();
 
         public Team()
         {
@@ -18,11 +22,17 @@ namespace Worms
         public void AddPlayer(Player player)
         {
             _players.Add(player);
+            player.OnPerformAction += EndTurn;
         }
         
         public Player GetPlayer(int index)
         {
             return _players[index];
+        }
+
+        private void EndTurn()
+        {
+            OnEndTurn?.Invoke();
         }
     }
 }

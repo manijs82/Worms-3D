@@ -5,14 +5,14 @@ namespace Worms
 {
     public class CameraHandler : MonoBehaviour
     {
-        [SerializeField] private TeamManager teamManager;
+        [SerializeField] private TeamManager _teamManager;
         
         private CinemachineFreeLook cam;
 
         private void Awake()
         {
             cam = GetComponent<CinemachineFreeLook>();
-            teamManager.OnPlayerSelected += FollowPlayer;
+            _teamManager.OnPlayerSelected += FollowPlayer;
         }
 
         private void FollowPlayer(Player player)

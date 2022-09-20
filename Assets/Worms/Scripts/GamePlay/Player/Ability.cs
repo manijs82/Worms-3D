@@ -13,9 +13,11 @@ namespace Worms
         public void Use()
         {
             if(_active)
-                PerformAction();
+                DoAbility();
         }
         
-        protected virtual void PerformAction() { }
+        protected virtual void DoAbility() { }
+        public virtual void OnStartTurn() { }
+        public virtual void OnEndTurn() { }
     }
 }

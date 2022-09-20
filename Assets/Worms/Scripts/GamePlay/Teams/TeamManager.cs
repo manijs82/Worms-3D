@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Worms
@@ -7,12 +8,13 @@ namespace Worms
     public class TeamManager : MonoBehaviour
     {
         public event Action<Player> OnPlayerSelected;
+        public event Action<Team[]> OnTeamsInitialized;
         
         [SerializeField] private Team[] _teams;
         private int _selectedTeamIndex;
         private int _selectedPlayerIndex = -1;
 
-        private Team SelectedTeam => _teams[_selectedTeamIndex];
+        public Team SelectedTeam => _teams[_selectedTeamIndex];
 
         private void Awake()
         {
@@ -32,6 +34,8 @@ namespace Worms
                 for (int j = 0; j < teamTr.childCount; j++) 
                     team.AddPlayer(teamTr.GetChild(j).GetComponent<Player>());
             }
+            
+            OnTeamsInitialized?.Invoke(_teams);
 
             SelectNextPlayer();
         }
@@ -44,6 +48,18 @@ namespace Worms
                 SelectPreviousPlayer();
         }
 
+        public void SelectNextTeam()
+        {
+            DeselectCurrentPlayer();
+            _selectedPlayerIndex = 0;
+            
+            _selectedTeamIndex++;
+            if (_selectedTeamIndex >= _teams.Length)
+                _selectedTeamIndex = 0;
+            
+            StartCoroutine(SelectPlayer(0));
+        }
+
         private void SelectNextPlayer()
         {
             DeselectCurrentPlayer();
@@ -51,7 +67,7 @@ namespace Worms
             _selectedPlayerIndex++;
             if (_selectedPlayerIndex >= SelectedTeam.PlayerCount)
                 _selectedPlayerIndex = 0;
-            SelectPlayer(_selectedPlayerIndex);
+            StartCoroutine(SelectPlayer(_selectedPlayerIndex));
         }
 
         private void SelectPreviousPlayer()
@@ -61,13 +77,14 @@ namespace Worms
             _selectedPlayerIndex--;
             if (_selectedPlayerIndex <= -1)
                 _selectedPlayerIndex = SelectedTeam.PlayerCount - 1;
-            SelectPlayer(_selectedPlayerIndex);
+            StartCoroutine(SelectPlayer(_selectedPlayerIndex));
         }
 
-        private void SelectPlayer(int index)
+        private IEnumerator SelectPlayer(int index)
         {
+            yield return new WaitForEndOfFrame();
             var player = SelectedTeam.GetPlayer(index);
-            player.isActive = true;
+            player.IsActive = true;
             
             OnPlayerSelected?.Invoke(player);
         }
@@ -75,7 +92,7 @@ namespace Worms
         private void DeselectCurrentPlayer()
         {
             if(_selectedPlayerIndex == -1) return;
-            SelectedTeam.GetPlayer(_selectedPlayerIndex).isActive = false;
+            SelectedTeam.GetPlayer(_selectedPlayerIndex).IsActive = false;
         }
     }
 }

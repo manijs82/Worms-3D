@@ -20,13 +20,14 @@ namespace Worms
 
         private void UseWeapon(InputAction.CallbackContext ctx)
         {
-            if(!_owner.isActive) return;
+            if(!_owner.IsActive) return;
             
             _currentWeapon.Use();
         }
         
         private void OnDisable()
         {
+            if(_owner.input == null) return;
             _owner.input.actions["Fire"].performed -= UseWeapon;
         }
     }
