@@ -5,6 +5,7 @@ namespace Worms
     public class Countdown
     {
         public event Action OnEnd;
+        
         private readonly float time;
         private float currentTime;
         private bool started;

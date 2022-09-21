@@ -24,15 +24,17 @@ namespace Worms
             
             _temaManager.OnTeamsInitialized += teams =>
             {
-                StartCoroutine(StartTurn(teams[0]));
-                foreach (var team in teams)
-                    team.OnEndTurn += GoToNextTurn;
+                StartTurn(teams[0]);
             };
         }
 
         private void Update()
         {
+            if(!_turnCountdown.IsTicking) return;
+            
             _turnCountdown.Tick(Time.deltaTime);
+            if(Input.GetKeyDown(KeyCode.F))
+                _turnCountdown.Stop();
         }
 
         private void GoToNextTurn()
@@ -40,12 +42,11 @@ namespace Worms
             EndTurn(_temaManager.SelectedTeam);
             
             _temaManager.SelectNextTeam();
-            StartCoroutine(StartTurn(_temaManager.SelectedTeam));
+            StartTurn(_temaManager.SelectedTeam);
         }
 
-        private IEnumerator StartTurn(Team team)
+        private void StartTurn(Team team)
         {
-            yield return new WaitForSeconds(_betweenTurnTime);
             foreach (var player in team.Players) 
                 player.StartTurn();
             

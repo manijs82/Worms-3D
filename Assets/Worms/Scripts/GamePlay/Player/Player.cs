@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,8 +8,6 @@ namespace Worms
 {
     public class Player : MonoBehaviour
     {
-        public event Action OnPerformAction;
-
         public GameObject model;
         [SerializeField] private List<Ability> _abilities;
 
@@ -58,6 +57,11 @@ namespace Worms
                 ability.OnEndTurn();
 
             IsActive = false;
+        }
+
+        public T GetAbility<T>() where T : Ability
+        {
+            return GetComponent<T>();
         }
     }
 }
