@@ -17,6 +17,7 @@ namespace Worms
         }
         
         protected virtual void DoAbility() { }
+
         public virtual void OnStartTurn() { }
         public virtual void OnEndTurn() { }
     }

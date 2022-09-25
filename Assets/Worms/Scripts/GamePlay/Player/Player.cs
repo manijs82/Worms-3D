@@ -25,7 +25,7 @@ namespace Worms
             }
         }
 
-        private void Start()
+        private void Awake()
         {
             cam = FindObjectOfType<Camera>().transform;
             input = FindObjectOfType<PlayerInput>();
