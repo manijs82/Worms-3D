@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 namespace Worms
 {
@@ -13,9 +14,19 @@ namespace Worms
             _owner = weaponHandler;
             var go = Instantiate(gameObject, weaponHandler.weaponAttachment);
             go.transform.localPosition = Vector3.zero;
-            
-            go.SetActive(false);
+
+            DeActivate();
             return go.GetComponent<Weapon>();
+        }
+
+        public virtual void Activate()
+        {
+            gameObject.SetActive(true);
+        }
+
+        public virtual void DeActivate()
+        {
+            gameObject.SetActive(false);
         }
 
         protected virtual void DealDamage(Health[] healths, int amount)

@@ -42,9 +42,9 @@ GameObject:
   - component: {fileID: 1474765752304759530}
   - component: {fileID: 1474765752304759533}
   - component: {fileID: 1474765752304759532}
-  - component: {fileID: 1474765752304759535}
+  - component: {fileID: 5270192254427218677}
   m_Layer: 0
-  m_Name: Gun
+  m_Name: Gernad Launcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,7 +94,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a20c621e59f27d24a946d227b005ba34, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -116,7 +116,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1474765752304759535
+--- !u!114 &5270192254427218677
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,8 +125,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1474765752304759534}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a32b2036ec84878a615d308221a0d80, type: 3}
+  m_Script: {fileID: 11500000, guid: 04034e1f411e418fa66955b839b743fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _firePoint: {fileID: 1474765751989203253}
-  _projectile: {fileID: 6321641015527898850, guid: ddda2b2cf1888bd4c8f5b9ca23a64475, type: 3}
+  gernad: {fileID: 4217516405062916598, guid: 25c416fe3f75bba4389a4f84760dc290, type: 3}
+  _force: 10

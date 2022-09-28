@@ -32,5 +32,25 @@ namespace Worms
             
             _currentWeapon.Use();
         }
+
+        public void UnEquipCurrentWeapon()
+        {
+            if(_currentWeapon != null)
+                _currentWeapon.DeActivate();
+        }
+
+        public void EquipWeapon(int index)
+        {
+            EquipWeapon(_weapons[index]);
+        }
+
+        private void EquipWeapon(Weapon weapon)
+        {
+            if(_currentWeapon != null)
+                _currentWeapon.DeActivate();
+            
+            _currentWeapon = weapon;
+            weapon.Activate();
+        }
     }
 }

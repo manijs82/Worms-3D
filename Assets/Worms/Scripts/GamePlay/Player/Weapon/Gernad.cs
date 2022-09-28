@@ -8,6 +8,7 @@ namespace Worms
         [SerializeField] private float _explodeTimer = 3;
         [SerializeField] private float _range = 5;
         [SerializeField] private int _damage;
+        [SerializeField] private GameObject explosionParticle;
         
         private IEnumerator Start()
         {
@@ -27,6 +28,16 @@ namespace Worms
                 
                 health.Damage(_damage);
             }
+            
+            Destroy();
+        }
+
+        private void Destroy()
+        {
+            var particle = Instantiate(explosionParticle, transform.position, Quaternion.identity);
+            particle.transform.localScale = Vector3.one * _range;
+            Destroy(particle, 1);
+            Destroy(gameObject);
         }
     }
 }

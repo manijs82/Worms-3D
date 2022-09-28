@@ -17,8 +17,8 @@ namespace Worms
 
         private void FollowPlayer(Player player)
         {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.visible = false;
+            //Cursor.lockState = CursorLockMode.Locked;
             
             cam.Follow = player.transform;
             cam.LookAt = player.transform;
