@@ -8,7 +8,7 @@ namespace Worms
         [SerializeField] private Massage[] _massages;
         private EventManager _eventManager;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _eventManager = FindObjectOfType<EventManager>();
             _eventManager.OnSendMassage += OnMassageReceived;
@@ -18,10 +18,10 @@ namespace Worms
         {
             if (_massages.Contains(msg))
             {
-                Action(msg);
+                OnEventTrigger(msg);
             }
         }
 
-        protected abstract void Action(Massage msg);
+        protected abstract void OnEventTrigger(Massage msg);
     }
 }

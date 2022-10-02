@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Worms
 {
     public class ActionChooser : TurnListener
     {
+        public event Action OnApplyActino;
+        
         [SerializeField] private ActionChooserUi _actionChooserUi;
         [SerializeField] private TurnAction[] _turnActions;
 
@@ -24,12 +27,14 @@ namespace Worms
         {
             _selectedAction = turnAction;
             _selectedAction.ApplyAction(_currentTeam.Players);
+            OnApplyActino?.Invoke();
         }
 
         protected override void OnTurnEnded()
         {
             _actionChooserUi.DestroyChoosers();
-            _selectedAction.DisableAction();
+            if(_selectedAction != null)
+                _selectedAction.DisableAction();
         }
     }
 }

@@ -3,25 +3,44 @@ using UnityEngine;
 
 namespace Worms
 {
-    public class CameraHandler : MonoBehaviour
+    public class CameraHandler : TurnListener
     {
         [SerializeField] private TeamManager _teamManager;
+        [SerializeField] private ActionChooser _actionChooser;
         
-        private CinemachineFreeLook cam;
+        private CinemachineFreeLook _cam;
 
-        private void Awake()
+        protected override void Awake()
         {
-            cam = GetComponent<CinemachineFreeLook>();
+            base.Awake();
+            _cam = GetComponent<CinemachineFreeLook>();
             _teamManager.OnPlayerSelected += FollowPlayer;
+            _actionChooser.OnApplyActino += LockCursor;
         }
 
         private void FollowPlayer(Player player)
         {
-            //Cursor.visible = false;
-            //Cursor.lockState = CursorLockMode.Locked;
-            
-            cam.Follow = player.transform;
-            cam.LookAt = player.transform;
+            _cam.Follow = player.transform;
+            _cam.LookAt = player.transform;
+        }
+
+        protected override void OnTurnStarted(Team team)
+        {
+            UnLockCursor();
+        }
+
+        protected override void OnTurnEnded() { }
+
+        private void LockCursor()
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        private void UnLockCursor()
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 }

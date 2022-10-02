@@ -6,6 +6,7 @@ namespace Worms
     public abstract class Weapon : MonoBehaviour
     {
         protected WeaponHandler _owner;
+        protected bool _activeSelf;
 
         public abstract void Use();
 
@@ -21,11 +22,13 @@ namespace Worms
 
         public virtual void Activate()
         {
+            _activeSelf = true;
             gameObject.SetActive(true);
         }
 
         public virtual void DeActivate()
         {
+            _activeSelf = false;
             gameObject.SetActive(false);
         }
 

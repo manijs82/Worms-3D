@@ -13,7 +13,7 @@ namespace Worms
             _active = _panel.activeSelf;
         }
 
-        protected override void Action(Massage msg)
+        protected override void OnEventTrigger(Massage msg)
         {
             TogglePanel();
         }

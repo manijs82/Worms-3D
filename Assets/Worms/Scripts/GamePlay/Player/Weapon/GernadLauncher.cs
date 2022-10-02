@@ -10,8 +10,9 @@ namespace Worms
         
         public override void Use()
         {
-            var go = Instantiate(gernad.gameObject, _firePoint.position, Quaternion.LookRotation(_firePoint.forward));
+            if(!_activeSelf) return;
             
+            var go = Instantiate(gernad.gameObject, _firePoint.position, Quaternion.LookRotation(_firePoint.forward));
             go.GetComponent<Rigidbody>().AddForce(go.transform.forward * _force, ForceMode.Impulse);
         }
     }

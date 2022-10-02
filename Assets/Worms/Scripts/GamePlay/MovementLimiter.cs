@@ -6,41 +6,49 @@ namespace Worms
     public class MovementLimiter : TurnListener
     {
         [SerializeField] private TeamManager _teamManager;
-        [SerializeField] private float radius = 6;
-        [SerializeField] private GameObject visuals;
+        [SerializeField] private float _radius = 6;
+        [SerializeField] private GameObject _visuals;
         
-        private Dictionary<Player, Vector3> playerPositions;
+        private Dictionary<Player, Vector3> _playerPositions;
+
+        public float Radius => _radius;
 
         private void Start()
         {
-            playerPositions = new Dictionary<Player, Vector3>();
+            _playerPositions = new Dictionary<Player, Vector3>();
             
             _teamManager.OnPlayerSelected += OnPlayerActivated;
-            visuals.transform.localScale = Vector3.one * radius; 
+            _visuals.transform.localScale = Vector3.one * _radius; 
         }
 
         protected override void OnTurnStarted(Team team)
         {
-            visuals.SetActive(true);
-            playerPositions.Clear();
+            _visuals.SetActive(true);
+            _playerPositions.Clear();
             
             SetPlayerPoses(team.Players);
         }
 
         protected override void OnTurnEnded()
         {
-            visuals.SetActive(false);
+            _visuals.SetActive(false);
         }
 
         private void OnPlayerActivated(Player player)
         {
-            transform.position = playerPositions[player];
+            transform.position = _playerPositions[player];
         }
 
         private void SetPlayerPoses(Player[] players)
         {
             foreach (var player in players) 
-                playerPositions.Add(player, player.transform.position);
+                _playerPositions.Add(player, player.transform.position);
+        }
+
+        public void ChangeRadius(float newRadius)
+        {
+            _radius = newRadius;
+            _visuals.transform.localScale = Vector3.one * _radius; 
         }
     }
 }

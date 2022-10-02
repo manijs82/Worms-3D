@@ -34,7 +34,7 @@ namespace Worms
         
         public void DestroyChoosers()
         {
-            for (int i = transform.childCount - 1; i >= 0; i--) 
+            for (int i = _root.childCount - 1; i >= 0; i--) 
                 Destroy(_root.GetChild(i).gameObject);
         }
     }

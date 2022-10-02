@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Worms
 {
     [RequireComponent(typeof(TeamSpawner))]
-    public class TeamManager : MonoBehaviour
+    public class TeamManager : EventListener
     {
         public event Action<Player> OnPlayerSelected;
         public event Action<Team[]> OnTeamsInitialized;
@@ -13,12 +13,22 @@ namespace Worms
         [SerializeField] private Team[] _teams;
         private int _selectedTeamIndex;
         private int _selectedPlayerIndex = -1;
+        private bool _playerDisabled;
 
         public Team SelectedTeam => _teams[_selectedTeamIndex];
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             GetComponent<TeamSpawner>().OnSpawnTeams += InitializeTeams;
+        }
+
+        protected override void OnEventTrigger(Massage msg)
+        {
+            _playerDisabled = !_playerDisabled;
+            
+            var player = SelectedTeam.GetPlayer(_selectedPlayerIndex);
+            player.IsActive = !_playerDisabled;
         }
 
         private void InitializeTeams()
@@ -27,10 +37,11 @@ namespace Worms
             
             for (int i = 0; i < _teams.Length; i++)
             {
-                var team = new Team();
-                _teams[i] = team;
-
                 var teamTr = transform.GetChild(i);
+                
+                var team = new Team(teamTr.childCount);
+                _teams[i] = team;
+                
                 for (int j = 0; j < teamTr.childCount; j++) 
                     team.AddPlayer(teamTr.GetChild(j).GetComponent<Player>());
             }

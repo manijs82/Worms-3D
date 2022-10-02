@@ -11,7 +11,7 @@ namespace Worms
         [SerializeField] private TeamSettings _teamSettings;
         [SerializeField] private Player _playerPrefab;
         
-        protected override void Action(Massage msg)
+        protected override void OnEventTrigger(Massage msg)
         {
             SpawnTeams(_teamSettings.TeamCount, _teamSettings.PlayerPerTeam);
         }

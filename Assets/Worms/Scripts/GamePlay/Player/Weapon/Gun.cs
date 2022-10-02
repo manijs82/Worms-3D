@@ -9,7 +9,8 @@ namespace Worms
         
         public override void Use()
         {
-            Instantiate(_projectile.gameObject, _firePoint.position, Quaternion.LookRotation(_firePoint.forward));
+            if(_activeSelf)
+                Instantiate(_projectile.gameObject, _firePoint.position, Quaternion.LookRotation(_firePoint.forward));
         }
     }
 }

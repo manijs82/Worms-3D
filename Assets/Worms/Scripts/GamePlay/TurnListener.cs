@@ -6,7 +6,7 @@ namespace Worms
     {
         [SerializeField] private TurnManager turnManager;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             turnManager.OnTurnStarted += OnTurnStarted;
             turnManager.OnTurnEnded += OnTurnEnded;
