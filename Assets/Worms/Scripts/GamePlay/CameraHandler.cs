@@ -8,20 +8,20 @@ namespace Worms
         [SerializeField] private TeamManager _teamManager;
         [SerializeField] private ActionChooser _actionChooser;
         
-        private CinemachineFreeLook _cam;
+        private CameraController _cam;
+        private Transform _target;
 
         protected override void Awake()
         {
             base.Awake();
-            _cam = GetComponent<CinemachineFreeLook>();
+            _cam = GetComponent<CameraController>();
             _teamManager.OnPlayerSelected += FollowPlayer;
             _actionChooser.OnApplyActino += LockCursor;
         }
 
         private void FollowPlayer(Player player)
         {
-            _cam.Follow = player.transform;
-            _cam.LookAt = player.transform;
+            _target = player.transform;
         }
 
         protected override void OnTurnStarted(Team team)
@@ -35,12 +35,16 @@ namespace Worms
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+
+            _cam.target = _target;
         }
 
         private void UnLockCursor()
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+
+            _cam.target = null;
         }
     }
 }

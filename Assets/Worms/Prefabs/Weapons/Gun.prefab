@@ -128,5 +128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a32b2036ec84878a615d308221a0d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioClip: {fileID: 8300000, guid: d9419ba0bfac1e84a95418ac5851caf6, type: 3}
   _firePoint: {fileID: 1474765751989203253}
   _projectile: {fileID: 6321641015527898850, guid: ddda2b2cf1888bd4c8f5b9ca23a64475, type: 3}

@@ -6,7 +6,10 @@ namespace Worms
     {
         protected override void OnEventTrigger(Massage msg)
         {
-            SceneManager.LoadScene(1);
+            if(msg == Massage.LoadGame)
+                SceneManager.LoadScene(1);
+            if(msg == Massage.LoadGame)
+                SceneManager.LoadScene(0);
         }
     }
 }

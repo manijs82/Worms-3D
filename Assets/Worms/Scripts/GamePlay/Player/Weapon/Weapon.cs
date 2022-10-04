@@ -1,10 +1,11 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Worms
 {
     public abstract class Weapon : MonoBehaviour
     {
+        [SerializeField] protected AudioClip _audioClip;
+        
         protected WeaponHandler _owner;
         protected bool _activeSelf;
 
@@ -38,6 +39,13 @@ namespace Worms
             {
                 health.Damage(amount);
             }
+        }
+
+        protected virtual void PlaySound()
+        {
+            if(_audioClip == null) return;
+            
+            SoundManager.Instance.PlaySound(_audioClip);
         }
     }
 }

@@ -2,7 +2,7 @@
 {
 	Properties
 	{
-		_HealthAmount ("", Range(0,1)) = 0.5
+		_HealthAmount ("HealthAmount", Range(0,1)) = 0.5
 		_HealthColor ("HealthColor", Color) = (0,1,0,1)
 		_EmptyColor ("EmptyColor", Color) = (1,0,0,1)
 	}

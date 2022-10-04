@@ -2,7 +2,7 @@
 
 namespace Worms
 {
-    public class EndGameChecker : MonoBehaviour
+    public class EndGameChecker : MassageSender
     {
         [SerializeField] private TeamManager _temaManager;
         [SerializeField] private TeamSettings _teamSettings;
@@ -29,7 +29,7 @@ namespace Worms
 
         private void EndGame()
         {
-            print("end game");
+            SendMassage();
         }
     }
 }

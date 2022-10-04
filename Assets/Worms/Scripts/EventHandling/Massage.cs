@@ -5,6 +5,8 @@
         StartGame,
         LoadGame,
         ToggleSettings,
-        TogglePause
+        TogglePause,
+        EndGame,
+        LoadMenu
     }
 }

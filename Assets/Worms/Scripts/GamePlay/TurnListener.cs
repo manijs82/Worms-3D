@@ -4,12 +4,13 @@ namespace Worms
 {
     public abstract class TurnListener : MonoBehaviour
     {
-        [SerializeField] private TurnManager turnManager;
+        private TurnManager _turnManager;
 
         protected virtual void Awake()
         {
-            turnManager.OnTurnStarted += OnTurnStarted;
-            turnManager.OnTurnEnded += OnTurnEnded;
+            _turnManager = FindObjectOfType<TurnManager>();
+            _turnManager.OnTurnStarted += OnTurnStarted;
+            _turnManager.OnTurnEnded += OnTurnEnded;
         }
 
         protected abstract void OnTurnStarted(Team team);

@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04034e1f411e418fa66955b839b743fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioClip: {fileID: 8300000, guid: af66162561d2eed40ad49268cab318bb, type: 3}
   _firePoint: {fileID: 1474765751989203253}
   gernad: {fileID: 4217516405062916598, guid: 25c416fe3f75bba4389a4f84760dc290, type: 3}
   _force: 10

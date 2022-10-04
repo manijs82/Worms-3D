@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce0c884ccd84da99a5f79e2fe04cb56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _massages: 03000000
   _teams: []
 --- !u!114 &683590838390101160
 MonoBehaviour:
@@ -106,5 +107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72723db077d14d5a9b29714afb73357c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _massage: 4
   _temaManager: {fileID: 683590838390101161}
   _teamSettings: {fileID: 683590838390101160}
