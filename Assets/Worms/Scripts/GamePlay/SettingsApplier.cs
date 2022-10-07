@@ -8,7 +8,7 @@ namespace Worms
         [SerializeField] private PostProcessVolume _postProcessVolume;
         [SerializeField] private CameraController _cameraController;
 
-        private void Start()
+        private void OnEnable()
         {
             var postIsOn = PlayerPrefs.GetInt("Post", 1) == 1;
             var invertX = PlayerPrefs.GetInt("InvertX", 0) == 1;
