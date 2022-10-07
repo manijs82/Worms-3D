@@ -26,6 +26,12 @@ namespace Worms
         
         private void SetNewRotation()
         {
+            if (Input.GetMouseButton(1))
+            {
+                var camForward = new Vector3(_owner.cam.forward.x, 0, _owner.cam.forward.z);
+                _newRotation = Quaternion.LookRotation(camForward);
+                return;
+            }
             if(_movement.MoveDir != Vector3.zero) 
                 _newRotation = Quaternion.LookRotation(_movement.MoveDir);
         }

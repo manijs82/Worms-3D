@@ -5,7 +5,7 @@ namespace Worms
 {
     public class ActionChooser : TurnListener
     {
-        public event Action OnApplyActino;
+        public event Action OnApplyAction;
         
         [SerializeField] private ActionChooserUi _actionChooserUi;
         [SerializeField] private TurnAction[] _turnActions;
@@ -27,7 +27,7 @@ namespace Worms
         {
             _selectedAction = turnAction;
             _selectedAction.ApplyAction(_currentTeam.Players);
-            OnApplyActino?.Invoke();
+            OnApplyAction?.Invoke();
         }
 
         protected override void OnTurnEnded()
@@ -35,6 +35,11 @@ namespace Worms
             _actionChooserUi.DestroyChoosers();
             if(_selectedAction != null)
                 _selectedAction.DisableAction();
+        }
+
+        private void OnDisable()
+        {
+            _actionChooserUi.OnChooseAction -= ApplyAction;
         }
     }
 }

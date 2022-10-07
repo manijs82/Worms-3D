@@ -2374,7 +2374,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abeac93524d84dfba9457e9302de7947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnManager: {fileID: 0}
   _teamManager: {fileID: 0}
   _radius: 20
   _visuals: {fileID: 6884888721226821956}

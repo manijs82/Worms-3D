@@ -129,5 +129,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _explodeTimer: 3
   _range: 5
-  _damage: 7
+  _damage: 6
   explosionParticle: {fileID: 3859033879157329130, guid: 0e0e89a933da407459a1988b505644cf, type: 3}

@@ -28,17 +28,27 @@ namespace Worms
             owner.input.actions["Jump"].performed += Jump;
         }
 
+        private void Update()
+        {
+            if(!_owner.IsActive)
+                _controller.Move(gravity * Time.deltaTime);
+        }
+
         protected override void DoAbility() => 
             Move();
 
         private void SetMoveVector(InputAction.CallbackContext ctx)
         {
+            if(!_owner.IsActive) return;
+
             var readValue = ctx.ReadValue<Vector2>();
             _inputDir = new Vector3(readValue.x, 0, readValue.y).normalized;
         }
 
         private void Jump(InputAction.CallbackContext obj)
         {
+            if(!_owner.IsActive) return;
+            
             if (_controller.isGrounded)
                 _moveVector.y = _jumpAmount;
         }

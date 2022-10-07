@@ -19,7 +19,7 @@ namespace Worms
         {
             this.team = team;
             
-            _teamText.text = $"Team {teamIndex}";
+            _teamText.text = $"Team {teamIndex + 1}";
             _statText.text = $"{team.PlayerCount}/{team.MaxPlayers}";
             team.OnPlayerDeath += UpdateStats;
             team.OnAllDeath += EnableDeadColor;
@@ -32,7 +32,8 @@ namespace Worms
 
         public void HighLightPanel(bool active)
         {
-            _backImage.color = active ? _highlightColor : _disableColor;
+            if(!team.IsDead)
+                _backImage.color = active ? _highlightColor : _disableColor;
         }
 
         private void EnableDeadColor()

@@ -1,5 +1,4 @@
-﻿using Cinemachine;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Worms
 {
@@ -16,12 +15,24 @@ namespace Worms
             base.Awake();
             _cam = GetComponent<CameraController>();
             _teamManager.OnPlayerSelected += FollowPlayer;
-            _actionChooser.OnApplyActino += LockCursor;
+            _actionChooser.OnApplyAction += LockCursor;
+            PauseManager.OnPause += OnPause;
+        }
+
+        private void OnPause(bool paused)
+        {
+            if (paused) 
+                UnLockCursor();
+            else
+                LockCursor();
         }
 
         private void FollowPlayer(Player player)
         {
             _target = player.transform;
+            
+            if(!Cursor.visible)
+                _cam.target = _target;
         }
 
         protected override void OnTurnStarted(Team team)
@@ -45,6 +56,12 @@ namespace Worms
             Cursor.lockState = CursorLockMode.None;
 
             _cam.target = null;
+        }
+
+        private void OnDisable()
+        {
+            _actionChooser.OnApplyAction -= LockCursor;
+            PauseManager.OnPause -= OnPause;
         }
     }
 }

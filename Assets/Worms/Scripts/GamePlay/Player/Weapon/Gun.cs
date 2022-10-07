@@ -13,6 +13,8 @@ namespace Worms
             
             Instantiate(_projectile.gameObject, _firePoint.position, Quaternion.LookRotation(_firePoint.forward));
             PlaySound();
+            
+            base.Use();
         }
     }
 }

@@ -5,11 +5,18 @@ namespace Worms
     public abstract class Weapon : MonoBehaviour
     {
         [SerializeField] protected AudioClip _audioClip;
+        [SerializeField] protected int _usePerTurn = 2;
         
         protected WeaponHandler _owner;
         protected bool _activeSelf;
+        protected int _useCount;
 
-        public abstract void Use();
+        public virtual void Use()
+        {
+            _useCount++;
+            if(_useCount >= _usePerTurn)
+                DeActivate();
+        }
 
         public virtual Weapon Spawn(WeaponHandler weaponHandler)
         {
@@ -31,6 +38,7 @@ namespace Worms
         {
             _activeSelf = false;
             gameObject.SetActive(false);
+            _useCount = 0;
         }
 
         protected virtual void DealDamage(Health[] healths, int amount)

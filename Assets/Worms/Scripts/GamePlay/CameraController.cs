@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Worms
@@ -7,9 +6,12 @@ namespace Worms
     public class CameraController : MonoBehaviour
     {
         public Transform target;
-        [SerializeField] private float _sensetivity;
+        public bool invertedX;
+        public bool invertedY;
+        public float sensitivity;
         [SerializeField] private float _moveSpeed;
         [SerializeField] private float _distance;
+        
         [SerializeField] private LayerMask _terrainLayer; 
         [SerializeField] private PlayerInput _input;
     
@@ -41,8 +43,9 @@ namespace Worms
         private void SetPosition()
         {
             var inputVec = _action.ReadValue<Vector2>();
-            _rotationVector += inputVec * (_sensetivity * Time.deltaTime);
-            var rotation = Quaternion.Euler(-_rotationVector.y, _rotationVector.x, 0);
+            _rotationVector += inputVec * (sensitivity * Time.deltaTime);
+            var rotation = Quaternion.Euler(_rotationVector.y * (invertedY ? -1 : 1),
+                _rotationVector.x * (invertedX ? -1 : 1), 0);
 
             _targetPoint = RotateAroundPoint(target.position + Vector3.back * _distance, target.position,
                 rotation);

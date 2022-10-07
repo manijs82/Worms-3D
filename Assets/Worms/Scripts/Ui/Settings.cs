@@ -8,6 +8,7 @@ namespace Worms
     {
         [SerializeField] private AudioMixer _audioMixer;
         [SerializeField] private Slider _masterVolumeSlider;
+        [SerializeField] private Slider _cameraSensitivity;
         [SerializeField] private Toggle _invertYToggle;
         [SerializeField] private Toggle _invertXToggle;
         [SerializeField] private Toggle _post;
@@ -18,6 +19,7 @@ namespace Worms
             _invertXToggle.isOn = PlayerPrefs.GetInt("InvertX", 0) == 1;
             _invertYToggle.isOn = PlayerPrefs.GetInt("InvertY", 1) == 1;
             _masterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume", 0);
+            _cameraSensitivity.value = PlayerPrefs.GetFloat("CamSens", 1);
             _audioMixer.SetFloat("MasterVolume", _masterVolumeSlider.value);
         }
 
@@ -43,6 +45,11 @@ namespace Worms
         {
             PlayerPrefs.SetFloat("MasterVolume", value);
             _audioMixer.SetFloat("MasterVolume", _masterVolumeSlider.value);
+        }
+        
+        public void SetCamSens(float value)
+        {
+            PlayerPrefs.SetFloat("CamSens", value);
         }
     }
 }

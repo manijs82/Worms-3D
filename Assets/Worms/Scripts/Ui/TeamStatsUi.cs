@@ -11,10 +11,25 @@ namespace Worms
 
         private TeamStatPanel[] _panels;
         
-        private void Start()
+        private void OnEnable()
         {
             _teamManager.OnTeamsInitialized += InitializeTeamPanels;
             _turnManager.OnTurnStarted += HighLightTeamPanel;
+        }
+
+        private void InitializeTeamPanels(Team[] teams)
+        {
+            _panels = new TeamStatPanel[teams.Length];
+            
+            int i = 0;
+            foreach (var team in teams)
+            {
+                TeamStatPanel panel = Instantiate(_teamStatPanel, _root);
+                panel.Initialize(team, i);
+                _panels[i] = panel;
+                
+                i++;
+            }
         }
 
         private void HighLightTeamPanel(Team team)
@@ -31,19 +46,10 @@ namespace Worms
             }
         }
 
-        private void InitializeTeamPanels(Team[] teams)
+        private void OnDisable()
         {
-            _panels = new TeamStatPanel[teams.Length];
-            
-            int i = 0;
-            foreach (var team in teams)
-            {
-                TeamStatPanel panel = Instantiate(_teamStatPanel, _root);
-                panel.Initialize(team, i);
-                _panels[i] = panel;
-                
-                i++;
-            }
+            _teamManager.OnTeamsInitialized -= InitializeTeamPanels;
+            _turnManager.OnTurnStarted -= HighLightTeamPanel;
         }
     }
 }

@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _temaManager: {fileID: 683590838390101161}
-  _turnTime: 30
+  _turnTime: 45
   _betweenTurnTime: 0
 --- !u!114 &683590838390101161
 MonoBehaviour:
@@ -63,7 +63,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce0c884ccd84da99a5f79e2fe04cb56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _massages: 03000000
   _teams: []
 --- !u!114 &683590838390101160
 MonoBehaviour:
@@ -94,6 +93,11 @@ MonoBehaviour:
   _massages: 00000000
   _spawnPoints: {fileID: 0}
   _teamSettings: {fileID: 683590838390101160}
+  _teamColors:
+  - {r: 0.55563855, g: 0.21466713, b: 0.6792453, a: 1}
+  - {r: 0.754717, g: 0.20291919, b: 0.20291919, a: 1}
+  - {r: 0.20274118, g: 0.6253248, b: 0.6415094, a: 1}
+  - {r: 0.29489416, g: 0.7264151, b: 0.2706924, a: 1}
   _playerPrefab: {fileID: 6345320760851839072, guid: 3e8d32786ba93c042b7d6a5533e0c754, type: 3}
 --- !u!114 &683590838390101163
 MonoBehaviour:
@@ -107,6 +111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72723db077d14d5a9b29714afb73357c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _massage: 4
   _temaManager: {fileID: 683590838390101161}
   _teamSettings: {fileID: 683590838390101160}
+  _pauseManager: {fileID: 0}

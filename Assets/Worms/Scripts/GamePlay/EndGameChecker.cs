@@ -2,10 +2,11 @@
 
 namespace Worms
 {
-    public class EndGameChecker : MassageSender
+    public class EndGameChecker : MonoBehaviour
     {
         [SerializeField] private TeamManager _temaManager;
         [SerializeField] private TeamSettings _teamSettings;
+        [SerializeField] private PauseManager _pauseManager;
         
         private int _deadTeams;
         
@@ -29,7 +30,7 @@ namespace Worms
 
         private void EndGame()
         {
-            SendMassage();
+            _pauseManager.PauseGame();
         }
     }
 }

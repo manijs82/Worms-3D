@@ -41,6 +41,11 @@ namespace Worms
             started = true;
         }
         
+        public void Pause()
+        {
+            started = false;
+        }
+        
         public void Resume()
         {
             started = true;

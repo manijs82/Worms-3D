@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 
 namespace Worms
@@ -21,10 +20,14 @@ namespace Worms
         {
             _turnCountdown = new Countdown(_turnTime);
             _turnCountdown.OnEnd += GoToNextTurn;
-            
             _temaManager.OnTeamsInitialized += teams =>
             {
                 StartTurn(teams[0]);
+            };
+            PauseManager.OnPause += paused =>
+            {
+                if(paused) _turnCountdown.Pause();
+                else _turnCountdown.Resume();
             };
         }
 
@@ -61,6 +64,12 @@ namespace Worms
             
             OnTurnEnded?.Invoke();
         }
-        
+
+        private void OnDisable()
+        {
+            _turnCountdown.OnEnd -= GoToNextTurn;
+            OnTurnStarted = null;
+            OnTurnEnded = null;
+        }
     }
 }

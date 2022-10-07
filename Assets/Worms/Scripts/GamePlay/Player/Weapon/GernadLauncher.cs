@@ -14,6 +14,8 @@ namespace Worms
             
             var go = Instantiate(gernad.gameObject, _firePoint.position, Quaternion.LookRotation(_firePoint.forward));
             go.GetComponent<Rigidbody>().AddForce(go.transform.forward * _force, ForceMode.Impulse);
+            
+            base.Use();
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 namespace Worms
 {
     [RequireComponent(typeof(TeamSpawner))]
-    public class TeamManager : EventListener
+    public class TeamManager : MonoBehaviour
     {
         public event Action<Player> OnPlayerSelected;
         public event Action<Team[]> OnTeamsInitialized;
@@ -17,18 +18,15 @@ namespace Worms
 
         public Team SelectedTeam => _teams[_selectedTeamIndex];
 
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
             GetComponent<TeamSpawner>().OnSpawnTeams += InitializeTeams;
+            PauseManager.OnPause += OnPause;
         }
 
-        protected override void OnEventTrigger(Massage msg)
+        private void OnPause(bool paused)
         {
-            _playerDisabled = !_playerDisabled;
-            
-            var player = SelectedTeam.GetPlayer(_selectedPlayerIndex);
-            player.IsActive = !_playerDisabled;
+            SelectedTeam.GetPlayer(_selectedPlayerIndex).IsActive = !paused;
         }
 
         private void InitializeTeams()
@@ -61,12 +59,18 @@ namespace Worms
 
         public void SelectNextTeam()
         {
+            if(_teams.Count(t => t.IsDead) == _teams.Length - 1)
+                return;
+            
             DeselectCurrentPlayer();
             _selectedPlayerIndex = 0;
-            
-            _selectedTeamIndex++;
-            if (_selectedTeamIndex >= _teams.Length)
-                _selectedTeamIndex = 0;
+
+            do
+            {
+                _selectedTeamIndex++;
+                if (_selectedTeamIndex >= _teams.Length)
+                    _selectedTeamIndex = 0;
+            } while (SelectedTeam.IsDead);
             
             StartCoroutine(SelectPlayer(0));
         }
@@ -104,6 +108,14 @@ namespace Worms
         {
             if(_selectedPlayerIndex == -1) return;
             SelectedTeam.GetPlayer(_selectedPlayerIndex).IsActive = false;
+        }
+
+        private void OnDisable()
+        {
+            GetComponent<TeamSpawner>().OnSpawnTeams -= InitializeTeams;
+            PauseManager.OnPause -= OnPause;
+            OnPlayerSelected = null;
+            OnTeamsInitialized = null;
         }
     }
 }

@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Worms
 {
     public class PauseManager : MassageSender
     {
+        public static event Action<bool> OnPause;
+        
         [SerializeField] private PlayerInput _input;
 
         private bool _paused;
@@ -16,6 +19,13 @@ namespace Worms
 
         private void TogglePause(InputAction.CallbackContext ctx)
         {
+            PauseGame();
+        }
+
+        public void PauseGame()
+        {
+            _paused = !_paused;
+            OnPause?.Invoke(_paused);
             SendMassage();
         }
     }

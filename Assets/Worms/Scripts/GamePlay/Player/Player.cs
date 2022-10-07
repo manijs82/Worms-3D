@@ -45,6 +45,11 @@ namespace Worms
                 ability.Use();
         }
 
+        public void SetColor(Color color)
+        {
+            model.GetComponent<Renderer>().material.color = color;
+        }
+
         public void StartTurn()
         {
             foreach (var ability in _abilities)

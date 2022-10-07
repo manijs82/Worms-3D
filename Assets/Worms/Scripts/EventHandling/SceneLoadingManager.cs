@@ -8,7 +8,7 @@ namespace Worms
         {
             if(msg == Massage.LoadGame)
                 SceneManager.LoadScene(1);
-            if(msg == Massage.LoadGame)
+            if(msg == Massage.LoadMenu)
                 SceneManager.LoadScene(0);
         }
     }

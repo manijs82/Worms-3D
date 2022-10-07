@@ -6,19 +6,22 @@ namespace Worms
     {
         [SerializeField] private Transform[] _spawnPoints;
         [SerializeField] private PickUp[] _pickUps;
-        [SerializeField] private int _maxNumOfPickUpsPerTurn = 2;
+        [SerializeField] private float _spawnProbabality = .3f;
         
         protected override void OnTurnStarted(Team team)
         {
-            var numOfPickUps = Random.Range(1, _maxNumOfPickUpsPerTurn + 1);
+            var rnd = Random.value;
+            if (!(rnd < _spawnProbabality)) return;
+            
+            SpawnPickUp();
+        }
 
-            for (int i = 0; i < numOfPickUps; i++)
-            {
-                var spawnPoint = GetRandomSpawnPoint();
-                var pickUp = GetRandomPickUp();
+        private void SpawnPickUp()
+        {
+            var spawnPoint = GetRandomSpawnPoint();
+            var pickUp = GetRandomPickUp();
 
-                Instantiate(pickUp, spawnPoint.position, spawnPoint.rotation);
-            }
+            Instantiate(pickUp, spawnPoint.position, spawnPoint.rotation);
         }
 
         protected override void OnTurnEnded() { }

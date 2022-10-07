@@ -313,7 +313,7 @@ MonoBehaviour:
   - {fileID: 6238643293634624089}
   _pickUps:
   - {fileID: 3910199310706954271, guid: c499744bc9032f84daa01f78a17e13a0, type: 3}
-  _maxNumOfPickUpsPerTurn: 2
+  _spawnProbabality: 0.6
 --- !u!1 &7647739850351503828
 GameObject:
   m_ObjectHideFlags: 0

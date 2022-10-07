@@ -180,7 +180,7 @@ MonoBehaviour:
   target: {fileID: 0}
   _sensetivity: 10
   _moveSpeed: 0.3
-  _distance: 10
+  _distance: 15
   _terrainLayer:
     serializedVersion: 2
     m_Bits: 64

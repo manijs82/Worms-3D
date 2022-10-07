@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weapoIndex: 0
+  _name: 1 Gernad
 --- !u!1 &8921659770674141026
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,6 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weapoIndex: 1
+  _name: 3 Pistol shots
 --- !u!1 &8921659770717225169
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,7 +139,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ee3b472a3f24f50800f80c3aa148952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnManager: {fileID: 0}
   _actionChooserUi: {fileID: 0}
   _turnActions:
   - {fileID: 8921659769490685091}

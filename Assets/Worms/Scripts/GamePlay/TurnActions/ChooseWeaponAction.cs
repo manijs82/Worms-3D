@@ -5,10 +5,11 @@ namespace Worms
     public class ChooseWeaponAction : TurnAction
     {
         [SerializeField] private int _weapoIndex;
-
+        [SerializeField] private string _name;
+        
         private WeaponHandler[] handlers;
 
-        public override string ActionName => $"Choose Weapon {_weapoIndex + 1}";
+        public override string ActionName => _name;
         
         public override void ApplyAction(Player[] players)
         {
