@@ -3,7 +3,9 @@ A Worms game created as an assignment for FutureGames In Unity
 
 Target grade -> VG
 
-A build of the game is included in the repository alongside the project files.
+A build of the game is included in the repository (zip file) alongside the project files.
+
+The controls are mentioned in the settings panel of the game.
 
 ### Implemented small VG features
 - Main menu + Game over
