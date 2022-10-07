@@ -3,6 +3,8 @@ A Worms game created as an assignment for FutureGames In Unity
 
 Target score -> VG
 
+A build of the game is included in the repository alongside the project files.
+
 ### Implemented small VG features
 - Main menu + Game over
 - Limited movement
