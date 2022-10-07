@@ -1,7 +1,7 @@
 # Worms-3D
 A Worms game created as an assignment for FutureGames In Unity
 
-Target score -> VG
+Target grade -> VG
 
 A build of the game is included in the repository alongside the project files.
 
