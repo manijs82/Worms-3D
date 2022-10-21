@@ -10,7 +10,8 @@ namespace Worms
     {
         public GameObject model;
         [SerializeField] private List<Ability> _abilities;
-
+        [SerializeField] private Renderer[] rends;
+        
         [HideInInspector] public PlayerInput input;
         [HideInInspector] public Transform cam;
         private bool _isActive;
@@ -47,7 +48,8 @@ namespace Worms
 
         public void SetColor(Color color)
         {
-            model.GetComponent<Renderer>().material.color = color;
+            foreach (var rend in rends) 
+                rend.material.color = color;
         }
 
         public void StartTurn()

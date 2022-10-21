@@ -9,6 +9,7 @@ namespace Worms
         [SerializeField] private float _speed;
         [SerializeField] private float _jumpAmount;
         [SerializeField] private Vector3 gravity;
+        [SerializeField] private Animator animator;
         
         private CharacterController _controller;
         private Transform _camera;
@@ -61,6 +62,7 @@ namespace Worms
             _moveVector += gravity * Time.deltaTime;      
 
             _controller.Move(_moveVector * Time.deltaTime);
+            animator.SetBool("IsMoving", _moveDir.magnitude > .01f);
         }
 
         private void SetMoveDirection()
